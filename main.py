@@ -7,6 +7,12 @@ Kalman filtering and smoothing for time series analysis.
 import sys
 from pathlib import Path
 
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 # Add src to path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -114,18 +120,18 @@ def main():
     
     # Load data
     measurements = load_data(config)
-    print(f"Loaded {len(measurements)} measurements")
+    logger.info(f"Loaded {len(measurements)} measurements")
     
     # Create and apply Kalman filter
-    print("\nApplying Kalman filter...")
+    logger.info("\nApplying Kalman filter...")
     kf = create_kalman_filter(config)
     estimates = apply_kalman_filter(kf, measurements)
     
     # Create visualizations
-    print("\nCreating visualization...")
+    logger.info("\nCreating visualization...")
     create_visualizations(measurements, estimates, config, script_dir)
     
-    print("\n Kalman filter analysis complete")
+    logger.info("\n Kalman filter analysis complete")
 
 
 if __name__ == "__main__":
