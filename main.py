@@ -76,39 +76,40 @@ def apply_kalman_filter(kf, measurements):
     return np.array(estimates)
 
 
-def create_visualizations(measurements, estimates, config, script_dir):
+def create_visualizations(measurements, estimates, config, script_dir, plot: bool = False):
     """Generate clean visualizations."""
-    fig, ax = plt.subplots(figsize=config.get("plotting", {}).get("figure_size", [12, 6]))
+    if plot:
+        fig, ax = plt.subplots(figsize=config.get("plotting", {}).get("figure_size", [12, 6]))
     
-    ax.plot(
-        measurements,
-        "k-",
-        linewidth=config.get("plotting", {}).get("linewidth", 1.5),
-        alpha=config.get("plotting", {}).get("alpha", 0.8),
-        label="Measurements",
-    )
+        ax.plot(
+            measurements,
+            "k-",
+            linewidth=config.get("plotting", {}).get("linewidth", 1.5),
+            alpha=config.get("plotting", {}).get("alpha", 0.8),
+            label="Measurements",
+        )
     
-    ax.plot(
-        estimates[:, 0],
-        "r--",
-        linewidth=config.get("plotting", {}).get("linewidth", 1.5),
-        label="Kalman Filter Estimate",
-    )
+        ax.plot(
+            estimates[:, 0],
+            "r--",
+            linewidth=config.get("plotting", {}).get("linewidth", 1.5),
+            label="Kalman Filter Estimate",
+        )
     
-    ax.set_xlabel("Time")
-    ax.set_ylabel("Value")
-    ax.set_title("Kalman Filter State Estimation")
-    ax.legend(loc="best")
-    ax.grid(True, alpha=0.3)
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Value")
+        ax.set_title("Kalman Filter State Estimation")
+        ax.legend(loc="best")
+        ax.grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    output_dir = ensure_output_dir(get_output_dir(config, script_dir))
-    save_plot(fig, output_dir / "kalman_filter.png", dpi=300)
+        plt.tight_layout()
+        output_dir = ensure_output_dir(get_output_dir(config, script_dir))
+        save_plot(fig, output_dir / "kalman_filter.png", dpi=300)
     
-    if config.get("plotting", {}).get("show_plot", True):
-        plt.show()
-    else:
-        plt.close(fig)
+        if config.get("plotting", {}).get("show_plot", True):
+            plt.show()
+        else:
+            plt.close(fig)
 
 
 def main():
