@@ -8,9 +8,9 @@ State space models analyze time series by modeling the underlying, unobserved st
 
 State Space Models describe dynamic systems through a pair of equations:
 
-- **State Transition Equation (Process Model):** Captures how system states change from one time step to the next, incorporating both deterministic dynamics and process noise.
+- State Transition Equation (Process Model): Captures how system states change from one time step to the next, incorporating both deterministic dynamics and process noise.
 
-- **Observation Equation (Measurement Model):** Establishes the relationship between the hidden system states and the measurements that can be observed.
+- Observation Equation (Measurement Model): Establishes the relationship between the hidden system states and the measurements that can be observed.
 
 These equations form the basis for implementing various state estimation techniques, from simple Kalman Filters to more complex nonlinear estimators. This mathematical structure provides a powerful and flexible way to model and analyze dynamic systems across numerous applications.
 
@@ -32,9 +32,9 @@ self.x0 = np.zeros(state_dim) self.P0 = np.eye(state_dim)
 
 The Kalman filter is a recursive estimation algorithm for linear systems affected by Gaussian noise distributions. It operates through a two-step process:
 
-- **Prediction Step (Time Update):** Uses the system model to forecast the next state and its associated uncertainty covariance.
+- Prediction Step (Time Update): Uses the system model to forecast the next state and its associated uncertainty covariance.
 
-- **Update Step (Measurement Update):** Incorporates new sensor measurements to refine the predicted state estimate.
+- Update Step (Measurement Update): Incorporates new sensor measurements to refine the predicted state estimate.
 
 <!-- -->
 
@@ -86,7 +86,7 @@ State space models and Kalman filtering are powerful tools for time series analy
 
 ## Key Takeaways
 
-- **State Transition Equation (Process Model):** Captures how system states change from one time step to the next, incorporating both deterministic dynamics and process noise.
-- **Observation Equation (Measurement Model):** Establishes the relationship between the hidden system states and the measurements that can be observed.
-- **Prediction Step (Time Update):** Uses the system model to forecast the next state and its associated uncertainty covariance.
-- **Update Step (Measurement Update):** Incorporates new sensor measurements to refine the predicted state estimate.
+- State Transition Equation (Process Model): Captures how system states change from one time step to the next, incorporating both deterministic dynamics and process noise.
+- Observation Equation (Measurement Model): Establishes the relationship between the hidden system states and the measurements that can be observed.
+- Prediction Step (Time Update): Uses the system model to forecast the next state and its associated uncertainty covariance.
+- Update Step (Measurement Update): Incorporates new sensor measurements to refine the predicted state estimate.
