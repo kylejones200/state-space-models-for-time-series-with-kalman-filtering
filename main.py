@@ -76,40 +76,42 @@ def create_visualizations(
     measurements, estimates, config, script_dir, plot: bool = False
 ):
     """Generate clean visualizations."""
-    if plot:
-        fig, ax = plt.subplots(
-            figsize=config.get("plotting", {}).get("figure_size", [12, 6])
-        )
+    if not plot:
+        return
 
-        ax.plot(
-            measurements,
-            "k-",
-            linewidth=config.get("plotting", {}).get("linewidth", 1.5),
-            alpha=config.get("plotting", {}).get("alpha", 0.8),
-            label="Measurements",
-        )
+    fig, ax = plt.subplots(
+        figsize=config.get("plotting", {}).get("figure_size", [12, 6])
+    )
 
-        ax.plot(
-            estimates[:, 0],
-            "r--",
-            linewidth=config.get("plotting", {}).get("linewidth", 1.5),
-            label="Kalman Filter Estimate",
-        )
+    ax.plot(
+        measurements,
+        "k-",
+        linewidth=config.get("plotting", {}).get("linewidth", 1.5),
+        alpha=config.get("plotting", {}).get("alpha", 0.8),
+        label="Measurements",
+    )
 
-        ax.set_xlabel("Time")
-        ax.set_ylabel("Value")
-        ax.set_title("Kalman Filter State Estimation")
-        ax.legend(loc="best")
-        ax.grid(True, alpha=0.3)
+    ax.plot(
+        estimates[:, 0],
+        "r--",
+        linewidth=config.get("plotting", {}).get("linewidth", 1.5),
+        label="Kalman Filter Estimate",
+    )
 
-        plt.tight_layout()
-        output_dir = ensure_output_dir(get_output_dir(config, script_dir))
-        save_plot(fig, output_dir / "kalman_filter.png", dpi=300)
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Value")
+    ax.set_title("Kalman Filter State Estimation")
+    ax.legend(loc="best")
+    ax.grid(True, alpha=0.3)
 
-        if config.get("plotting", {}).get("show_plot", True):
-            plt.show()
-        else:
-            plt.close(fig)
+    plt.tight_layout()
+    output_dir = ensure_output_dir(get_output_dir(config, script_dir))
+    save_plot(fig, output_dir / "kalman_filter.png", dpi=300)
+
+    if config.get("plotting", {}).get("show_plot", True):
+        plt.show()
+    else:
+        plt.close(fig)
 
 
 def main():
