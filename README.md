@@ -1,6 +1,22 @@
-# Repository
+# State Space Models and Kalman Filtering for Time Series Analysis
 
-Companion code for a Medium article.
+
+## The problem
+
+Companion materials for **State Space Models and Kalman Filtering for Time Series Analysis** — see `article.md` for the full narrative.
+
+## Companion code
+
+This folder holds reproducible Python for the Medium piece: `main.py`, `config.yaml`, `src/`, `article.md` (full article export).
+
+## Reproduce
+
+Requires [uv](https://docs.astral.sh/uv/).
+
+```bash
+uv sync
+uv run python main.py
+```
 
 ## Disclaimer
 
